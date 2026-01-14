@@ -1,0 +1,36 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Engine/GameInstance.h"
+#include "Sato/DeviceThreadManager.h"
+#include "MagicGameInstance.generated.h"
+
+/**
+ * デバイスのマルチスレッドの管理
+ * ゲーム難易度の管理
+ */
+UCLASS()
+class MAGIC_PROJECT_API UMagicGameInstance : public UGameInstance
+{
+	GENERATED_BODY()
+
+public:
+	virtual void Init() override;
+	virtual void Shutdown() override;
+	
+public:
+	UPROPERTY()
+	UDeviceThreadManager* DeviceManager;
+
+	UPROPERTY(BluePrintReadWrite)
+	int Difficulty;
+
+	/// <summary>
+	/// タイトルで設定する腕の上下運動回数
+	/// 初期値として1を設定
+	/// </summary>
+	UPROPERTY(BluePrintReadWrite)
+	int Setting_ArmUpDownCnt = 1;
+};
